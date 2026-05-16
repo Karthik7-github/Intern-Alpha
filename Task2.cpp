@@ -1,43 +1,43 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
-struct Question {
-    string question;
-    vector<string> options;
-    int correctAnswer;
+struct Quiz
+{
+    string Question;
+    vector<string> Options;
+    int Correctans;
 };
 
-int main() {
-    vector<Question> quiz = {
+int main()
+{
+    vector<Quiz> quiz = {
         {"What is 2 + 2?", {"1", "2", "4", "5"}, 2},
         {"Capital of India?", {"Mumbai", "Delhi", "Chennai", "Kolkata"}, 1},
         {"C++ is a ___ language?", {"Markup", "Programming", "Scripting", "Design"}, 1}
     };
 
-    int score = 0, answer;
+    int correct = 0,answer;
 
-    cout << "📝 Online Quiz\n";
-
-    for (int i = 0; i < quiz.size(); i++) {
-        cout << "\nQ" << i + 1 << ": " << quiz[i].question << endl;
-
-        for (int j = 0; j < quiz[i].options.size(); j++) {
-            cout << j << ". " << quiz[i].options[j] << endl;
+    for(int i=0;i<quiz.size();i++){
+        cout<<"\nQ"<<i+1<<" : "<<quiz[i].Question<<endl;
+        for(int j=0;j<quiz[i].Options.size();j++){
+            cout<<j+1<<". "<<quiz[i].Options[j]<<endl;
         }
 
-        cout << "Enter your answer: ";
-        cin >> answer;
+        cout<<"Answer the Correct Answer : ";
+        cin>>answer;
 
-        if (answer == quiz[i].correctAnswer) {
-            cout << "Correct!\n";
-            score++;
-        } else {
-            cout << "Wrong!\n";
+        if(quiz[i].Correctans==answer-1){
+            correct++;
+            cout<<"Correct"<<endl;
+        }else{
+            cout<<"Wrong"<<endl;
         }
     }
 
-    cout << "\n🎯 Final Score: " << score << "/" << quiz.size() << endl;
+    cout<<"Total Correct Answer : "<<correct<<endl;
 
     return 0;
 }
